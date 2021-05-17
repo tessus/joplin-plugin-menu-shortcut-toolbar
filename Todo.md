@@ -12,3 +12,5 @@ Allow the user to enable/disable menu item, shortcut, toolbar icon (all at the s
 
 - marked text
 - striken text
+
+# Improve README
