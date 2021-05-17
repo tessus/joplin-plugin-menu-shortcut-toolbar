@@ -14,3 +14,9 @@ Allow the user to enable/disable menu item, shortcut, toolbar icon (all at the s
 - striken text
 
 # Improve README
+
+I hate to write documentation, but it has to happen at one point.
+
+# Write tests
+
+As always, tests should be written for internal functions/methods, etc.
