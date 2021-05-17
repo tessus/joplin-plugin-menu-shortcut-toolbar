@@ -13,6 +13,8 @@ Allow the user to enable/disable menu item, shortcut, toolbar icon (all at the s
 - marked text
 - striken text
 
+Option to automatically enable/disable depending on Markdown settings
+
 # Improve README
 
 I hate to write documentation, but it has to happen at one point.
