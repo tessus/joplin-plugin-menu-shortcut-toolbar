@@ -6,10 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2021-05-17
+### Added
+- menu item, shortcut, toolbar icon: underline
+
 ## [0.1.0] - 2021-05-16
 ### Added
 - menu item, shortcut, toolbar icon: mark
 - menu item, shortcut, toolbar icon: strikethrough
 
-[Unreleased]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/releases/tag/0.1.0
