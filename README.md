@@ -6,6 +6,7 @@ This plugin creates menu items (in `Edit`), shortcuts (defaults can be changed),
 
 - mark
 - strikethrough
+- underline
 
 # Changelog
 

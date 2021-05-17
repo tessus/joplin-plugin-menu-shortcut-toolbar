@@ -57,5 +57,22 @@ joplin.plugins.register({
 		joplin.views.toolbarButtons.create('textStrikethroughButton', 'textStrikethrough', ToolbarButtonLocation.EditorToolbar);
 		joplin.views.menuItems.create('textStrikethroughMenuItem', 'textStrikethrough', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+Shift+U' });
 
+		// underline text
+		joplin.commands.register({
+			name: 'textUnderline',
+			label: 'Underline',
+			iconName: 'fas fa-underline',
+			execute: async () => {
+				const selectedText = (await joplin.commands.execute('selectedText') as string);
+
+				const newText = wrapSelectionWithStrings(selectedText, '++', '++', 'underlined text');
+
+				await joplin.commands.execute('replaceSelection', newText);
+				await joplin.commands.execute('editor.focus');
+			},
+		});
+		joplin.views.toolbarButtons.create('textUnderlineButton', 'textUnderline', ToolbarButtonLocation.EditorToolbar);
+		joplin.views.menuItems.create('textUnderlineMenuItem', 'textUnderline', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+U' });
+
 	},
 });
