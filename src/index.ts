@@ -2,6 +2,30 @@ import joplin from 'api';
 import { MenuItemLocation } from 'api/types';
 import { ToolbarButtonLocation } from 'api/types';
 
+const actions = {
+	textMark: {
+		label: 'Mark',
+		iconName: 'fas fa-highlighter',
+		wrapString: '==',
+		defaultText: 'marked text',
+		accelerator: 'CmdOrCtrl+Shift+Y',
+	},
+	textStrikethrough: {
+		label: 'Strikethrough',
+		iconName: 'fas fa-strikethrough',
+		wrapString: '~~',
+		defaultText: 'striken text',
+		accelerator: 'CmdOrCtrl+Shift+U',
+	},
+	textUnderline: {
+		label: 'Underline',
+		iconName: 'fas fa-underline',
+		wrapString: '++',
+		defaultText: 'underlined text',
+		accelerator: 'CmdOrCtrl+U',
+	},
+};
+
 function wrapSelectionWithStrings(selected: string|null, string1: string, string2 = '', defaultText = '') {
 	if (!selected) selected = defaultText;
 
@@ -23,59 +47,27 @@ joplin.plugins.register({
 	onStart: async function() {
 		//console.info('joplin-plugin-menu-shortcut-toolbar: plugin started!');
 
-		// mark text
-		joplin.commands.register({
-			name: 'textMark',
-			label: 'Mark',
-			enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
-			iconName: 'fas fa-highlighter',
-			execute: async () => {
-				const selectedText = (await joplin.commands.execute('selectedText') as string);
+		// process actions
+		for (const actionName in actions) {
+			const action = actions[actionName];
 
-				const newText = wrapSelectionWithStrings(selectedText, '==', '==', 'marked text');
+			joplin.commands.register({
+				name: actionName,
+				label: action.label,
+				enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
+				iconName: action.iconName,
+				execute: async () => {
+					const selectedText = (await joplin.commands.execute('selectedText') as string);
 
-				await joplin.commands.execute('replaceSelection', newText);
-				await joplin.commands.execute('editor.focus');
-			},
-		});
-		joplin.views.toolbarButtons.create('textMarkButton', 'textMark', ToolbarButtonLocation.EditorToolbar);
-		joplin.views.menuItems.create('textMarkMenuItem', 'textMark', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+Shift+Y' });
+					const newText = wrapSelectionWithStrings(selectedText, action.wrapString, action.wrapString, action.defaultText);
 
-		// strikethrough text
-		joplin.commands.register({
-			name: 'textStrikethrough',
-			label: 'Strikethrough',
-			enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
-			iconName: 'fas fa-strikethrough',
-			execute: async () => {
-				const selectedText = (await joplin.commands.execute('selectedText') as string);
-
-				const newText = wrapSelectionWithStrings(selectedText, '~~', '~~', 'striken text');
-
-				await joplin.commands.execute('replaceSelection', newText);
-				await joplin.commands.execute('editor.focus');
-			},
-		});
-		joplin.views.toolbarButtons.create('textStrikethroughButton', 'textStrikethrough', ToolbarButtonLocation.EditorToolbar);
-		joplin.views.menuItems.create('textStrikethroughMenuItem', 'textStrikethrough', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+Shift+U' });
-
-		// underline text
-		joplin.commands.register({
-			name: 'textUnderline',
-			label: 'Underline',
-			enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
-			iconName: 'fas fa-underline',
-			execute: async () => {
-				const selectedText = (await joplin.commands.execute('selectedText') as string);
-
-				const newText = wrapSelectionWithStrings(selectedText, '++', '++', 'underlined text');
-
-				await joplin.commands.execute('replaceSelection', newText);
-				await joplin.commands.execute('editor.focus');
-			},
-		});
-		joplin.views.toolbarButtons.create('textUnderlineButton', 'textUnderline', ToolbarButtonLocation.EditorToolbar);
-		joplin.views.menuItems.create('textUnderlineMenuItem', 'textUnderline', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+U' });
+					await joplin.commands.execute('replaceSelection', newText);
+					await joplin.commands.execute('editor.focus');
+				},
+			});
+			joplin.views.toolbarButtons.create(actionName + 'Button', actionName, ToolbarButtonLocation.EditorToolbar);
+			joplin.views.menuItems.create(actionName + 'MenuItem', actionName, MenuItemLocation.Edit, { accelerator: action.accelerator });
+		}
 
 	},
 });

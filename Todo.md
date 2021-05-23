@@ -6,7 +6,6 @@ Add CodeMirror shortuts, e.g. joinLines
 
 Currently this is a rather crude code base. Everything is in one file, ...
 
-use dictionary and a loop: de-duplicate code
 use separate files for functions, settings, main
 
 # Settings
@@ -15,6 +14,7 @@ Allow the user to enable/disable menu item, shortcut, toolbar icon (all at the s
 
 - marked text
 - striken text
+- underlined text
 
 Option to automatically enable/disable depending on Markdown settings
 
