@@ -27,6 +27,7 @@ joplin.plugins.register({
 		joplin.commands.register({
 			name: 'textMark',
 			label: 'Mark',
+			enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
 			iconName: 'fas fa-highlighter',
 			execute: async () => {
 				const selectedText = (await joplin.commands.execute('selectedText') as string);
@@ -44,6 +45,7 @@ joplin.plugins.register({
 		joplin.commands.register({
 			name: 'textStrikethrough',
 			label: 'Strikethrough',
+			enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
 			iconName: 'fas fa-strikethrough',
 			execute: async () => {
 				const selectedText = (await joplin.commands.execute('selectedText') as string);
@@ -61,6 +63,7 @@ joplin.plugins.register({
 		joplin.commands.register({
 			name: 'textUnderline',
 			label: 'Underline',
+			enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
 			iconName: 'fas fa-underline',
 			execute: async () => {
 				const selectedText = (await joplin.commands.execute('selectedText') as string);
