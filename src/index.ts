@@ -54,7 +54,7 @@ joplin.plugins.register({
 			joplin.commands.register({
 				name: actionName,
 				label: action.label,
-				enabledCondition: 'markdownEditorVisible && !richTextEditorVisible',
+				enabledCondition: 'markdownEditorPaneVisible && !richTextEditorVisible',
 				iconName: action.iconName,
 				execute: async () => {
 					const selectedText = (await joplin.commands.execute('selectedText') as string);
