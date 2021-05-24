@@ -1,6 +1,22 @@
 import joplin from "api";
 import { SettingItemType } from "api/types";
+import { actions } from "./common";
 
+// async function returnEnabledMarkdownPlugins(actions: object) {
+// 	let arr = [];
+
+// 	for (const actionName in actions) {
+// 		const action = actions[actionName];
+
+// 		if (actionName !== 'textStrikethrough') {
+// 			if (await joplin.settings.globalValue(action.markdownPluginSetting)) {
+// 				arr.push(actionName.slice(4));
+// 			}
+// 		}
+// 	}
+
+// 	return arr.join(', ');
+// }
 export namespace settings {
 	const SECTION = 'MenuShortcutToolbarSettings';
 
@@ -9,6 +25,8 @@ export namespace settings {
 			label: "Menu items, shortcuts, toolbar icons",
 			iconName: "fas fa-tools",
 		});
+
+		//const enabledMarkdownPlugins = await returnEnabledMarkdownPlugins(actions);
 
 		await joplin.settings.registerSettings({
 			activateOnlyIfEnabledInMarkdownSettings: {

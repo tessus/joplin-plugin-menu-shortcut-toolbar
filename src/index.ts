@@ -2,32 +2,7 @@ import joplin from 'api';
 import { MenuItemLocation } from 'api/types';
 import { ToolbarButtonLocation } from 'api/types';
 import { settings } from "./settings";
-
-const actions = {
-	textMark: {
-		label: 'Mark',
-		iconName: 'fas fa-highlighter',
-		wrapString: '==',
-		defaultText: 'marked text',
-		accelerator: 'CmdOrCtrl+Shift+Y',
-		markdownPluginSetting: 'markdown.plugin.mark',
-	},
-	textStrikethrough: {
-		label: 'Strikethrough',
-		iconName: 'fas fa-strikethrough',
-		wrapString: '~~',
-		defaultText: 'striken text',
-		accelerator: 'CmdOrCtrl+Shift+U',
-	},
-	textUnderline: {
-		label: 'Underline',
-		iconName: 'fas fa-underline',
-		wrapString: '++',
-		defaultText: 'underlined text',
-		accelerator: 'CmdOrCtrl+U',
-		markdownPluginSetting: 'markdown.plugin.insert',
-	},
-};
+import { actions } from "./common";
 
 function wrapSelectionWithStrings(selected: string|null, string1: string, string2 = '', defaultText = '') {
 	if (!selected) selected = defaultText;
