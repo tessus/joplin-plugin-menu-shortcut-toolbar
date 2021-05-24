@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-05-24
+### Added
+- settings screen
+- setting: Only activate menu items, shortcuts and toolbar icons for markdown plugins which are enabled in Joplin's settings
+- disable menu items and shortcuts in WYSIWYG editor
+
+### Fixed
+- default text for struck out text
+
 ## [0.1.1] - 2021-05-17
 ### Added
 - menu item, shortcut, toolbar icon: underline
@@ -15,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - menu item, shortcut, toolbar icon: mark
 - menu item, shortcut, toolbar icon: strikethrough
 
-[Unreleased]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/compare/0.1.1...HEAD
+[Unreleased]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar/releases/tag/0.1.0
