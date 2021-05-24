@@ -11,7 +11,7 @@ export const actions = {
 		label: 'Strikethrough',
 		iconName: 'fas fa-strikethrough',
 		wrapString: '~~',
-		defaultText: 'striken text',
+		defaultText: 'struck out text',
 		accelerator: 'CmdOrCtrl+Shift+U',
 	},
 	textUnderline: {
