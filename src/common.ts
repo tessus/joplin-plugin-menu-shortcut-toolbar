@@ -39,3 +39,12 @@ export const actions = {
 		markdownPluginSetting: 'markdown.plugin.sub',
 	},
 };
+
+export const DTI_SETTINGS_PREFIX = 'disableToolbarIcon.';
+export const ACTIVATE_ONLY_SETTING = 'activateOnlyIfEnabledInMarkdownSettings';
+
+export default {
+	actions,
+	DTI_SETTINGS_PREFIX,
+	ACTIVATE_ONLY_SETTING,
+}

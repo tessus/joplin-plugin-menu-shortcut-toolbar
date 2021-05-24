@@ -2,7 +2,7 @@ import joplin from 'api';
 import { MenuItemLocation } from 'api/types';
 import { ToolbarButtonLocation } from 'api/types';
 import { settings } from "./settings";
-import { actions } from "./common";
+import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING } from "./common";
 
 function wrapSelectionWithStrings(selected: string|null, string1: string, string2 = '', defaultText = '') {
 	if (!selected) selected = defaultText;
@@ -25,7 +25,7 @@ joplin.plugins.register({
 	onStart: async function() {
 		//console.info('joplin-plugin-menu-shortcut-toolbar: plugin started!');
 		await settings.register();
-		const activateOnlyIfEnabledInMarkdownSettings = await joplin.settings.value("activateOnlyIfEnabledInMarkdownSettings");
+		const activateOnlyIfEnabledInMarkdownSettings = await joplin.settings.value(ACTIVATE_ONLY_SETTING);
 
 		// process actions
 		for (const actionName in actions) {
@@ -52,7 +52,10 @@ joplin.plugins.register({
 						await joplin.commands.execute('editor.focus');
 					},
 				});
-				joplin.views.toolbarButtons.create(actionName + 'Button', actionName, ToolbarButtonLocation.EditorToolbar);
+				var toolbarIconEnabled = !(await joplin.settings.value(DTI_SETTINGS_PREFIX + actionName));
+				if (toolbarIconEnabled) {
+					joplin.views.toolbarButtons.create(actionName + 'Button', actionName, ToolbarButtonLocation.EditorToolbar);
+				}
 				joplin.views.menuItems.create(actionName + 'MenuItem', actionName, MenuItemLocation.Edit, { accelerator: action.accelerator });
 			}
 
