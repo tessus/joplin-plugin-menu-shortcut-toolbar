@@ -22,4 +22,20 @@ export const actions = {
 		accelerator: 'CmdOrCtrl+U',
 		markdownPluginSetting: 'markdown.plugin.insert',
 	},
+	textSuperscript: {
+		label: 'Superscript',
+		iconName: 'fas fa-superscript',
+		wrapString: '^',
+		defaultText: 'superscript text',
+		accelerator: null,
+		markdownPluginSetting: 'markdown.plugin.sup',
+	},
+	textSubscript: {
+		label: 'Subscript',
+		iconName: 'fas fa-subscript',
+		wrapString: '~',
+		defaultText: 'subscript text',
+		accelerator: null,
+		markdownPluginSetting: 'markdown.plugin.sub',
+	},
 };
