@@ -35,7 +35,7 @@ export namespace settings {
 				type: SettingItemType.Bool,
 				value: false,
 				label: 'Only activate, if enabled in Markdown Plugin settings',
-				description: "Only activate menu items, shortcuts and toolbar icons for markdown plugins which are enabled in Joplin's settings. (requires restart)",
+				description: "Only activate menu items, shortcuts, and toolbar icons for markdown plugins which are enabled in Joplin's settings. (requires restart)",
 			},
 		});
 
