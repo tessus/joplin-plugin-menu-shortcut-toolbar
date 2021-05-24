@@ -1,6 +1,7 @@
 import joplin from 'api';
 import { MenuItemLocation } from 'api/types';
 import { ToolbarButtonLocation } from 'api/types';
+import { settings } from "./settings";
 
 const actions = {
 	textMark: {
@@ -9,6 +10,7 @@ const actions = {
 		wrapString: '==',
 		defaultText: 'marked text',
 		accelerator: 'CmdOrCtrl+Shift+Y',
+		markdownPluginSetting: 'markdown.plugin.mark',
 	},
 	textStrikethrough: {
 		label: 'Strikethrough',
@@ -23,6 +25,7 @@ const actions = {
 		wrapString: '++',
 		defaultText: 'underlined text',
 		accelerator: 'CmdOrCtrl+U',
+		markdownPluginSetting: 'markdown.plugin.insert',
 	},
 };
 
@@ -46,27 +49,38 @@ function wrapSelectionWithStrings(selected: string|null, string1: string, string
 joplin.plugins.register({
 	onStart: async function() {
 		//console.info('joplin-plugin-menu-shortcut-toolbar: plugin started!');
+		await settings.register();
+		const activateOnlyIfEnabledInMarkdownSettings = await joplin.settings.value("activateOnlyIfEnabledInMarkdownSettings");
 
 		// process actions
 		for (const actionName in actions) {
 			const action = actions[actionName];
 
-			joplin.commands.register({
-				name: actionName,
-				label: action.label,
-				enabledCondition: 'markdownEditorPaneVisible && !richTextEditorVisible',
-				iconName: action.iconName,
-				execute: async () => {
-					const selectedText = (await joplin.commands.execute('selectedText') as string);
+			let activate = true;
 
-					const newText = wrapSelectionWithStrings(selectedText, action.wrapString, action.wrapString, action.defaultText);
+			if (activateOnlyIfEnabledInMarkdownSettings && actionName !== 'textStrikethrough') {
+				activate = await joplin.settings.globalValue(action.markdownPluginSetting);
+			}
 
-					await joplin.commands.execute('replaceSelection', newText);
-					await joplin.commands.execute('editor.focus');
-				},
-			});
-			joplin.views.toolbarButtons.create(actionName + 'Button', actionName, ToolbarButtonLocation.EditorToolbar);
-			joplin.views.menuItems.create(actionName + 'MenuItem', actionName, MenuItemLocation.Edit, { accelerator: action.accelerator });
+			if (activate) {
+				joplin.commands.register({
+					name: actionName,
+					label: action.label,
+					enabledCondition: 'markdownEditorPaneVisible && !richTextEditorVisible',
+					iconName: action.iconName,
+					execute: async () => {
+						const selectedText = (await joplin.commands.execute('selectedText') as string);
+
+						const newText = wrapSelectionWithStrings(selectedText, action.wrapString, action.wrapString, action.defaultText);
+
+						await joplin.commands.execute('replaceSelection', newText);
+						await joplin.commands.execute('editor.focus');
+					},
+				});
+				joplin.views.toolbarButtons.create(actionName + 'Button', actionName, ToolbarButtonLocation.EditorToolbar);
+				joplin.views.menuItems.create(actionName + 'MenuItem', actionName, MenuItemLocation.Edit, { accelerator: action.accelerator });
+			}
+
 		}
 
 	},
