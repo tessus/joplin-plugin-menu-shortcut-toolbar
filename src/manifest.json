@@ -7,6 +7,6 @@
 	"description": "Additional menu items, shortcuts, and toolbar icons, which are not part of Joplin core",
 	"author": "Helmut K. C. Tessarek",
 	"homepage_url": "https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar#readme",
-	"repository_url": "https://github.com/tes'sus/joplin-plugin-menu-shortcut-toolbar",
+	"repository_url": "https://github.com/tessus/joplin-plugin-menu-shortcut-toolbar",
 	"keywords": ["shortcut", "toolbar", "icon", "menu"]
 }
