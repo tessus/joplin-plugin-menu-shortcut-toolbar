@@ -59,6 +59,22 @@ joplin.plugins.register({
 				joplin.views.menuItems.create(actionName + 'MenuItem', actionName, MenuItemLocation.Edit, { accelerator: action.accelerator });
 			}
 
+			joplin.commands.register({
+				name: 'textJoinLines',
+				label: 'Join lines',
+				enabledCondition: 'markdownEditorPaneVisible && !richTextEditorVisible',
+				execute: async () => {
+					//const selectedText = (await joplin.commands.execute('selectedText') as string);
+					//await joplin.commands.execute('editor.focus');
+
+					await joplin.commands.execute('editor.execCommand', {
+						name: 'joinLines',
+						//args: []
+					});
+				},
+			});
+			joplin.views.menuItems.create('textJoinLinesMenuItem', 'textJoinLines', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+J' });
+
 		}
 
 	},
