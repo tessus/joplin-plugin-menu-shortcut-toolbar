@@ -41,7 +41,7 @@ export namespace settings {
 				section: SECTION,
 				advanced: true,
 				type: SettingItemType.Bool,
-				label: 'Disable toolbar icon for ' + action.wrapString + action.label + action.wrapString + ' (requires restart)',
+				label: 'Remove toolbar icon for ' + action.wrapString + action.label + action.wrapString + ' (requires restart)',
 			}
 		}
 

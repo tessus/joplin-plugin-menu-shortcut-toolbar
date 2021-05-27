@@ -42,7 +42,7 @@ The shortcuts can be changed in the shortcut editor (`Settings > Keyboard Shortc
 
 `Enable "join lines" in editor`:  The markdown editor (CodeMirror) provides a function to join lines. This option enables it. (requires restart)
 
-Under `Show Advanced Settings` it is possible to disable toolbar icons for individual actions.
+Under `Show Advanced Settings` it is possible to remove toolbar icons for individual actions.
 
 # Changelog
 
