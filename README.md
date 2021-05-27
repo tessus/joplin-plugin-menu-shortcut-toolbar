@@ -40,7 +40,7 @@ The shortcuts can be changed in the shortcut editor (`Settings > Keyboard Shortc
 
 `Only activate, if enabled in Markdown Plugin settings`: Only activate menu items, shortcuts, and toolbar icons for markdown plugins which are enabled in Joplin's settings.
 
-`Enable "join lines" in editor`:  The markdown editor (CodeMirror) provides a function to join lines. This option enables it. (requires restart)
+`Enable "join lines" in editor`:  The markdown editor (CodeMirror) provides a function to join lines. This option enables it.
 
 Under `Show Advanced Settings` it is possible to remove toolbar icons for individual actions.
 
