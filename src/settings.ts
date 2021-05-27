@@ -1,6 +1,6 @@
 import joplin from "api";
 import { SettingItemType } from "api/types";
-import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING } from "./common";
+import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES } from "./common";
 
 export namespace settings {
 	const SECTION = 'MenuShortcutToolbarSettings';
@@ -20,6 +20,15 @@ export namespace settings {
 			type: SettingItemType.Bool,
 			label: 'Only activate, if enabled in Markdown Plugin settings',
 			description: "Only activate menu items, shortcuts, and toolbar icons for markdown plugins which are enabled in Joplin's settings. (requires restart)",
+		}
+
+		PLUGIN_SETTINGS[ENABLE_JOIN_LINES] = {
+			value: true,
+			public: true,
+			section: SECTION,
+			type: SettingItemType.Bool,
+			label: 'Enable "join lines" in editor',
+			description: "The markdown editor (CodeMirror) provides a function to join lines. This option enables it. (requires restart)",
 		}
 
 		for (const actionName in actions) {

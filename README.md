@@ -22,11 +22,25 @@ This plugin creates menu items (in `Edit`), shortcuts (defaults can be changed),
 
 The shortcuts can be changed in the shortcut editor (`Settings > Keyboard Shortcuts`) or in the `keymap-desktop.json` file.
 
+# CodeMirror Commands
+
+This plugin also makes additional CodeMirror functionality available.
+
+## Default Shortcuts and Command Names
+
+| Action         | Default Shortcut    | command            |
+|----------------|---------------------|--------------------|
+| joinLines      | `CmdOrCtrl+J`       | editor.joinLines   |
+
+The shortcuts can be changed in the shortcut editor (`Settings > Keyboard Shortcuts`) or in the `keymap-desktop.json` file.
+
 # Settings
 
 **Please note:** All settings require a restart of Joplin.
 
 `Only activate, if enabled in Markdown Plugin settings`: Only activate menu items, shortcuts, and toolbar icons for markdown plugins which are enabled in Joplin's settings.
+
+`Enable "join lines" in editor`:  The markdown editor (CodeMirror) provides a function to join lines. This option enables it. (requires restart)
 
 Under `Show Advanced Settings` it is possible to disable toolbar icons for individual actions.
 
