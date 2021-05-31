@@ -3,7 +3,7 @@ import { MenuItemLocation } from 'api/types';
 import { ToolbarButtonLocation } from 'api/types';
 import { ContentScriptType } from 'api/types';
 import { settings } from "./settings";
-import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES } from "./common";
+import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES, ENABLE_TOGGLE_OVERWRITE } from "./common";
 
 function wrapSelectionWithStrings(selected: string|null, string1: string, string2 = '', defaultText = '') {
 	if (!selected) selected = defaultText;
@@ -27,7 +27,8 @@ joplin.plugins.register({
 		//console.info('joplin-plugin-menu-shortcut-toolbar: plugin started!');
 		await settings.register();
 		const activateOnlyIfEnabledInMarkdownSettings = await joplin.settings.value(ACTIVATE_ONLY_SETTING);
-		const enableJoinLines = await joplin.settings.value(ENABLE_JOIN_LINES);
+		const enableJoinLines                         = await joplin.settings.value(ENABLE_JOIN_LINES);
+		const enableToggleOverwrite                   = await joplin.settings.value(ENABLE_TOGGLE_OVERWRITE);
 
 		// process actions
 		for (const actionName in actions) {
@@ -81,6 +82,20 @@ joplin.plugins.register({
 				},
 			});
 			joplin.views.menuItems.create('editorJoinLinesMenuItem', 'editor.joinLines', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+J' });
+		}
+
+		if (enableToggleOverwrite) {
+			joplin.commands.register({
+				name: 'editor.toggleOverwrite',
+				label: 'Toggle overwrite',
+				enabledCondition: 'markdownEditorPaneVisible && !richTextEditorVisible',
+				execute: async () => {
+					await joplin.commands.execute('editor.execCommand', {
+						name: 'toggleOverwrite',
+					});
+				},
+			});
+			joplin.views.menuItems.create('editorToggleOverwriteMenuItem', 'editor.toggleOverwrite', MenuItemLocation.Edit, { accelerator: 'CmdOrCtrl+Shift+O' });
 		}
 
 	},

@@ -43,10 +43,12 @@ export const actions = {
 export const DTI_SETTINGS_PREFIX      = 'disableToolbarIcon.';
 export const ACTIVATE_ONLY_SETTING    = 'activateOnlyIfEnabledInMarkdownSettings';
 export const ENABLE_JOIN_LINES        = 'enableJoinLines';
+export const ENABLE_TOGGLE_OVERWRITE  = 'enableToggleOverwrite';
 
 export default {
 	actions,
 	DTI_SETTINGS_PREFIX,
 	ACTIVATE_ONLY_SETTING,
 	ENABLE_JOIN_LINES,
+	ENABLE_TOGGLE_OVERWRITE,
 }

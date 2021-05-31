@@ -1,6 +1,6 @@
 import joplin from "api";
 import { SettingItemType } from "api/types";
-import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES } from "./common";
+import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES, ENABLE_TOGGLE_OVERWRITE } from "./common";
 
 export namespace settings {
 	const SECTION = 'MenuShortcutToolbarSettings';
@@ -29,6 +29,15 @@ export namespace settings {
 			type: SettingItemType.Bool,
 			label: 'Enable "join lines" in editor',
 			description: "The markdown editor (CodeMirror) provides a function to join lines. This option enables it. (requires restart)",
+		}
+
+		PLUGIN_SETTINGS[ENABLE_TOGGLE_OVERWRITE] = {
+			value: false,
+			public: true,
+			section: SECTION,
+			type: SettingItemType.Bool,
+			label: 'Enable "toggle overwrite mode" in editor',
+			description: "The markdown editor (CodeMirror) provides a function to toggle overwrite mode. This option enables it. (requires restart)",
 		}
 
 		for (const actionName in actions) {
