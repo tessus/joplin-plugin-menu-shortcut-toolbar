@@ -50,7 +50,7 @@ export namespace settings {
 				section: SECTION,
 				advanced: true,
 				type: SettingItemType.Bool,
-				label: 'Remove toolbar icon for ' + action.wrapString + action.label + action.wrapString + ' (requires restart)',
+				label: 'Remove toolbar icon for ' + action.stringPrefix + action.label + action.stringPostfix + ' (requires restart)',
 			}
 		}
 

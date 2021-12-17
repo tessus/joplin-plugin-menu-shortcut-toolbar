@@ -19,6 +19,7 @@ This plugin creates menu items (in `Edit`), shortcuts (defaults can be changed),
 | underline      | `CmdOrCtrl+U`       | textUnderline      |
 | superscript    |                     | textSuperscript    |
 | subscript      |                     | textSubscript      |
+| color text red | `CmdOrCtrl+Shift+R` | textColorRed       |
 
 The shortcuts can be changed in the shortcut editor (`Settings > Keyboard Shortcuts`) or in the `keymap-desktop.json` file.
 

@@ -49,7 +49,7 @@ joplin.plugins.register({
 					execute: async () => {
 						const selectedText = (await joplin.commands.execute('selectedText') as string);
 
-						const newText = wrapSelectionWithStrings(selectedText, action.wrapString, action.wrapString, action.defaultText);
+						const newText = wrapSelectionWithStrings(selectedText, action.stringPrefix, action.stringPostfix, action.defaultText);
 
 						await joplin.commands.execute('replaceSelection', newText);
 						await joplin.commands.execute('editor.focus');
