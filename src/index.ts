@@ -3,7 +3,11 @@ import { MenuItemLocation } from 'api/types';
 import { ToolbarButtonLocation } from 'api/types';
 import { ContentScriptType } from 'api/types';
 import { settings } from "./settings";
-import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES, ENABLE_TOGGLE_OVERWRITE } from "./common";
+import { 
+	actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES, ENABLE_TOGGLE_OVERWRITE, 
+	CUSTOM_TEXT_WRAP_1_PREFIX, CUSTOM_TEXT_WRAP_1_POSTFIX,
+	CUSTOM_TEXT_WRAP_2_PREFIX, CUSTOM_TEXT_WRAP_2_POSTFIX 
+} from "./common";
 
 function wrapSelectionWithStrings(selected: string|null, string1: string, string2 = '', defaultText = '') {
 	if (!selected) selected = defaultText;
@@ -19,6 +23,22 @@ function wrapSelectionWithStrings(selected: string|null, string1: string, string
 		return selected.substr(0, start) + inside + selected.substr(end + 1);
 	} else {
 		return selected.substr(0, start) + string1 + core + string2 + selected.substr(end + 1);
+	}
+}
+
+
+async function customTextWrapReplace(s: string) {
+	switch (s) {
+		case 'CUSTOM_TEXT_WRAP_1_PREFIX':
+			return (await joplin.settings.value(CUSTOM_TEXT_WRAP_1_PREFIX) as string);
+		case 'CUSTOM_TEXT_WRAP_1_POSTFIX':
+			return (await joplin.settings.value(CUSTOM_TEXT_WRAP_1_POSTFIX) as string);
+		case 'CUSTOM_TEXT_WRAP_2_PREFIX':
+			return (await joplin.settings.value(CUSTOM_TEXT_WRAP_2_PREFIX) as string);
+		case 'CUSTOM_TEXT_WRAP_2_POSTFIX':
+			return (await joplin.settings.value(CUSTOM_TEXT_WRAP_2_POSTFIX) as string);
+		default:
+			return s
 	}
 }
 
@@ -49,7 +69,7 @@ joplin.plugins.register({
 					execute: async () => {
 						const selectedText = (await joplin.commands.execute('selectedText') as string);
 
-						const newText = wrapSelectionWithStrings(selectedText, action.wrapString, action.wrapString, action.defaultText);
+						const newText = wrapSelectionWithStrings(selectedText, await customTextWrapReplace(action.stringPrefix), await customTextWrapReplace(action.stringPostfix), action.defaultText);
 
 						await joplin.commands.execute('replaceSelection', newText);
 						await joplin.commands.execute('editor.focus');
