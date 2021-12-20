@@ -43,14 +43,23 @@ export const actions = {
 		accelerator: null,
 		markdownPluginSetting: 'markdown.plugin.sub',
 	},
-	textRedColor: {
-		label: 'RedColor',
+	textCustomWrap1: {
+		label: 'CustomWrap1',
 		iconName: 'fas fa-font',
-		stringPrefix: '<span style="color: red">',
-		stringPostfix: '</span>',
-		defaultText: 'color red text',
+		stringPrefix: 'CUSTOM_TEXT_WRAP_1_PREFIX',
+		stringPostfix: 'CUSTOM_TEXT_WRAP_1_POSTFIX',
+		defaultText: 'custom text wrap 1',
 		accelerator: 'CmdOrCtrl+Shift+R',
-		markdownPluginSetting: 'markdown.plugin.sub',
+		markdownPluginSetting: 'markdown.plugin.customwrap1',
+	},
+	textCustomWrap2: {
+		label: 'CustomWrap2',
+		iconName: 'fas fa-font',
+		stringPrefix: 'CUSTOM_TEXT_WRAP_2_PREFIX',
+		stringPostfix: 'CUSTOM_TEXT_WRAP_2_POSTFIX',
+		defaultText: 'custom text wrap 2',
+		accelerator: null,
+		markdownPluginSetting: 'markdown.plugin.customwrap2',
 	},
 };
 
@@ -58,6 +67,10 @@ export const DTI_SETTINGS_PREFIX      = 'disableToolbarIcon.';
 export const ACTIVATE_ONLY_SETTING    = 'activateOnlyIfEnabledInMarkdownSettings';
 export const ENABLE_JOIN_LINES        = 'enableJoinLines';
 export const ENABLE_TOGGLE_OVERWRITE  = 'enableToggleOverwrite';
+export const CUSTOM_TEXT_WRAP_1_PREFIX  = 'customPrefix1';
+export const CUSTOM_TEXT_WRAP_1_POSTFIX  = 'customPostfix1';
+export const CUSTOM_TEXT_WRAP_2_PREFIX  = 'customPrefix2';
+export const CUSTOM_TEXT_WRAP_2_POSTFIX  = 'customPostfix2';
 
 export default {
 	actions,
@@ -65,4 +78,8 @@ export default {
 	ACTIVATE_ONLY_SETTING,
 	ENABLE_JOIN_LINES,
 	ENABLE_TOGGLE_OVERWRITE,
+	CUSTOM_TEXT_WRAP_1_PREFIX,
+	CUSTOM_TEXT_WRAP_1_POSTFIX,
+	CUSTOM_TEXT_WRAP_2_PREFIX,
+	CUSTOM_TEXT_WRAP_2_POSTFIX
 }

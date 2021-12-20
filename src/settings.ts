@@ -1,6 +1,10 @@
 import joplin from "api";
 import { SettingItemType } from "api/types";
-import { actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES, ENABLE_TOGGLE_OVERWRITE } from "./common";
+import { 
+	actions, DTI_SETTINGS_PREFIX, ACTIVATE_ONLY_SETTING, ENABLE_JOIN_LINES, ENABLE_TOGGLE_OVERWRITE, 
+	CUSTOM_TEXT_WRAP_1_PREFIX, CUSTOM_TEXT_WRAP_1_POSTFIX, 
+	CUSTOM_TEXT_WRAP_2_PREFIX, CUSTOM_TEXT_WRAP_2_POSTFIX 
+} from "./common";
 
 export namespace settings {
 	const SECTION = 'MenuShortcutToolbarSettings';
@@ -39,6 +43,47 @@ export namespace settings {
 			label: 'Enable "toggle overwrite mode" in editor',
 			description: "The markdown editor (CodeMirror) provides a function to toggle overwrite mode. This option enables it. (requires restart)",
 		}
+
+		
+		// CUSTOM WRAP TEXT 1
+		PLUGIN_SETTINGS[CUSTOM_TEXT_WRAP_1_PREFIX] = {
+			value: '<span style="color: red">',
+			public: true,
+			section: SECTION,
+			type: SettingItemType.String,
+			label: 'Custom prefix 1',
+			// description: "Create a custom prefix / postfix combination to be inserted before/after highlighted text.",
+		}
+		
+		PLUGIN_SETTINGS[CUSTOM_TEXT_WRAP_1_POSTFIX] = {
+			value: '</span>',
+			public: true,
+			section: SECTION,
+			type: SettingItemType.String,
+			label: 'Custom postfix 1',
+			// description: "Create a custom prefix / postfix combination to be inserted before/after highlighted text.",
+		}		
+		// END CUSTOM WRAP TEXT 1
+
+		// CUSTOM WRAP TEXT 2
+		PLUGIN_SETTINGS[CUSTOM_TEXT_WRAP_2_PREFIX] = {
+			value: '<span style="color: orange">',
+			public: true,
+			section: SECTION,
+			type: SettingItemType.String,
+			label: 'Custom prefix 2',
+			// description: "Create a custom prefix / postfix combination to be inserted before/after highlighted text.",
+		}
+		
+		PLUGIN_SETTINGS[CUSTOM_TEXT_WRAP_2_POSTFIX] = {
+			value: '</span>',
+			public: true,
+			section: SECTION,
+			type: SettingItemType.String,
+			label: 'Custom postfix 2',
+			// description: "Create a custom prefix / postfix combination to be inserted before/after highlighted text.",
+		}		
+		// END CUSTOM WRAP TEXT 2
 
 		for (const actionName in actions) {
 			const action = actions[actionName];
